@@ -1,17 +1,23 @@
 {
-    "name": "batjs",
-    "description": "",
-    "version": "0.0.0",
-    "main": "batjs.js",
-    "ignore": [
-        "test",
-        ".jshintrc",
-        ".travis.yml",
-        "CHANGELOG.md",
-        "karma.conf.js",
-        "package.json"
-    ],
-    "devDependencies": {
-        "chai": "*"
-    }
+  "name": "batjs",
+  "description": "",
+  "version": "0.0.0",
+  "main": "batjs.js",
+  "ignore": [
+    "test",
+    ".jshintrc",
+    ".travis.yml",
+    "CHANGELOG.md",
+    "karma.conf.js",
+    "package.json"
+  ],
+  "devDependencies": {
+    "chai": "*"
+  },
+  "dependencies": {
+    "gsap": "~1.11.7",
+    "jquery": "~2.1.1",
+    "lodash": "~2.4.1",
+    "async": "~0.8.0"
+  }
 }

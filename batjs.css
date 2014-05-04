@@ -1,0 +1,16 @@
+.pixel {
+  position: fixed;
+  background-image: url('sprites.png');
+  width: 100px;
+  height: 100px;
+  animation: play .8s steps(9) infinite;
+  -webkit-animation: play .8s steps(9) infinite;
+}
+@keyframes play {
+   from { background-position:    0px; }
+     to { background-position: 900px; }
+}
+@-webkit-keyframes play {
+  from { background-position:    0 0px; }
+  to { background-position: 0 900px; }
+}
