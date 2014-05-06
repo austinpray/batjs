@@ -41,7 +41,9 @@ function batjs() {
       create: function () {
         batEl = document.createElement("div");
         batEl.className = "pixel";
-        context.appendChild(batEl);
+        fastdom.write(function() {
+          context.appendChild(batEl);
+        });
       },
       draw: function () {
         TweenMax.to (batEl, 3, {
