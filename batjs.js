@@ -19,56 +19,48 @@ function batjs() {
   var windowHeight = $(window).height();
   var randomY = function () {
     return Math.floor(Math.random() * (windowHeight - 0) + 0);
-  }
-  var batQ = async.queue(function (bat, callback) {
-    async.series([
-      function(callback){
-        callback(null, bat.create());
-      },
-      function(callback){
-        callback(null, bat.draw());
-      }
-    ],
-    function () {
-      if(_.isFunction(callback)) {
-        callback();
-      }
-    });
-  }, 100);
+  };
   var Bat = function () {
-    var batEl;
-    return {
-      create: function () {
-        batEl = document.createElement("div");
-        batEl.className = "pixel";
-        fastdom.write(function() {
-          context.appendChild(batEl);
-        });
+    this.batEl;
+  };
+  Bat.prototype.create = function () {
+    var that = this;
+    this.batEl = document.createElement("div");
+    this.batEl.className = "pixel";
+    fastdom.write(function() {
+      context.appendChild(this.batEl);
+    }, this);
+  };
+  Bat.prototype.draw = function () {
+    TweenMax.set(this.batEl, {
+      x: this.batEl.offsetWidth,
+      y: randomY()
+    });
+    TweenMax.to (this.batEl, 3, {
+      delay: Math.random(),
+      x: windowWidth + this.batEl.offsetWidth,
+      y: randomY(),
+      ease: randomY() % 2 ? 'easeInSine' : 'easeOutSine',
+      onComplete: function (bat) {
+        bat.destroy();
       },
-      draw: function () {
-        TweenMax.to (batEl, 3, {
-          delay: Math.random(),
-          x: windowWidth + batEl.offsetWidth,
-          y: randomY(),
-          ease: randomY() % 2 ? 'easeInSine' : 'easeOutSine',
-          onComplete: function (bat) {
-            bat.destroy();
-          },
-          onCompleteParams: [this]
-        });
-      },
-      destroy: function () {
-        context.removeChild(batEl);
-      }
-    };
+      onCompleteParams: [this]
+    });
+  }; 
+  Bat.prototype.destroy = function () {
+    fastdom.write(function () {
+      context.removeChild(this.batEl);
+      this.batEl = "";
+    }, this);
   };
 
   var addBats = function (num) {
-    if(num < 1) {
-      return;
-    } else {
-      batQ.push(new Bat());
-      addBats(num - 1);
+    var b;
+    while(num-- > -1) {
+      //batQ.push(new Bat());
+      b = new Bat();
+      b.create();
+      b.draw();
     }
   };
   
