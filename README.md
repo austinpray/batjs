@@ -17,7 +17,16 @@ The component can be used as a Common JS module, an AMD module, or a global.
 ## API
 
 ### batjs()
+New instance of batjs
+```js
+var bats = new batjs();
+```
 
+### batjs\#addBats(num)
+Dump some bats onto the DOM
+```js
+bats.addBats(50);
+```
 
 ## Testing
 
