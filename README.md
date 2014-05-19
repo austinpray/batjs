@@ -1,6 +1,6 @@
 # batjs
 
-[![Build Status](https://secure.travis-ci.org/user/batjs.png?branch=master)](http://travis-ci.org/user/batjs)
+[![Build Status](https://secure.travis-ci.org/Corelaunch/batjs.png?branch=master)](http://travis-ci.org/user/batjs)
 
 
 ## Installation
